@@ -102,8 +102,7 @@ public class DAOImpl <T, K extends Serializable> implements IDAO<T, K>{
         try {
              //Collemos a sesión de Hibernate
             session = sessionFactory.openSession();
-            TypedQuery<T> query = session
-				.createQuery("from " + persistentClass.getSimpleName());
+            TypedQuery<T> query = (TypedQuery<T>) session.createQuery("from " + persistentClass.getSimpleName());
             //Comenzamos unha transacción
             tran = session.beginTransaction();
             if (query.getResultList() != null) {

@@ -24,14 +24,14 @@ public class Arquivo implements Serializable {
     @Column(name = "NOME_ARQUIVO")
     private String nomeArquivo;
     
-    @Column(name = "ARQUIVO")
-    private File arquivo;
+    @Column(name = "ARQUIVO", length = 100000)
+    private byte[] arquivo;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="DIRECTORIO", nullable = true)
     private Directorio directorio;
 
-    public Arquivo(Long id, String nomeArquivo, File arquivo, Directorio directorio) {
+    public Arquivo(Long id, String nomeArquivo, byte[] arquivo, Directorio directorio) {
         this.id = id;
         this.nomeArquivo = nomeArquivo;
         this.arquivo = arquivo;
@@ -65,11 +65,11 @@ public class Arquivo implements Serializable {
         this.directorio = directorio;
     }
 
-    public File getArquivo() {
+    public byte[] getArquivo() {
         return arquivo;
     }
 
-    public void setArquivo(File arquivo) {
+    public void setArquivo(byte[] arquivo) {
         this.arquivo = arquivo;
     }
     

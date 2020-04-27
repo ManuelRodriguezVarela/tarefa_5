@@ -10,10 +10,17 @@ import gal.san.clemente.tarefa_5_bdo.model.dao.implementacion.DAOManagerFactory;
 import gal.san.clemente.tarefa_5_bdo.model.dao.utils.FileUtils;
 import gal.san.clemente.tarefa_5_bdo.model.dao.utils.configuration.App;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller {
     private static final String BBDD = "bbdd";
@@ -37,7 +44,20 @@ public class Controller {
         
         save(FileUtils.getFileNames(listaFicheros, path));
     }
-            
+    
+    public void writeFilesIsNotExist() throws ModelException {
+        List<Directorio> directorios = manager_bbdd.getDirectorioDAO().obtenerTodos();
+        for (Directorio d : directorios) {
+            for(Arquivo a : d.getArquivos()) {
+                String ruta = d.getNomeDirectorio().concat(a.getNomeArquivo());
+                File file = new File(ruta);
+                if (!file.exists()){
+                    byte[] file_bbdd = a.getArquivo();
+                    FileUtils.ArrayByteToFile(ruta, file_bbdd);
+                }
+            }
+        }
+    }
     
     private void save(List<File> listaFicheros) throws ModelException {
         for(File f : listaFicheros) {
@@ -51,15 +71,15 @@ public class Controller {
             }
             if(directorio != null) {
                 addArquivoToDirectorio(directorio, f);
-                manager_bbdd.getDirectorioDAO().insertar(directorio);
+                manager_bbdd.getDirectorioDAO().insertarOrEdit(directorio);
             }
         }
     }
             
-    private Directorio addArquivoToDirectorio(Directorio directorio, File f) {
+    private Directorio addArquivoToDirectorio(Directorio directorio, File f) throws ModelException {
         Arquivo arquivo = new Arquivo();
         arquivo.setNomeArquivo(f.getName());
-        arquivo.setArquivo(f);
+        arquivo.setArquivo(FileUtils.fileToArrayByte(f));
         directorio.addArquivo(arquivo);
         return directorio;
     }     

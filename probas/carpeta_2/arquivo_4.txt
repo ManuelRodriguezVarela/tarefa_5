@@ -8,10 +8,10 @@
     "hibernate": {
 	"driver":"org.postgresql.Driver",
         "dialect":"org.hibernate.dialect.PostgreSQLDialect",
-        "HBM2DDL_AUTO":"update",
+        "HBM2DDL_AUTO":"create-drop",
         "SHOW_SQL":"true"
     },
     "app":{
-        "directory":"probas"
+        "directory":"/home/user/minidrive"
     }
 }

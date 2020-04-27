@@ -12,6 +12,7 @@ public class ReadFile {
         try {
             controller = new Controller();
             controller.saveFiles();
+            controller.writeFilesIsNotExist();
         } catch (ModelException ex) {
             Logger.getLogger(ReadFile.class.getName()).log(Level.SEVERE, null, ex);
         }
