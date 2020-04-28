@@ -10,17 +10,10 @@ import gal.san.clemente.tarefa_5_bdo.model.dao.implementacion.DAOManagerFactory;
 import gal.san.clemente.tarefa_5_bdo.model.dao.utils.FileUtils;
 import gal.san.clemente.tarefa_5_bdo.model.dao.utils.configuration.App;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Controller {
     private static final String BBDD = "bbdd";
@@ -37,6 +30,10 @@ public class Controller {
         daoConfiguration = manager_json.getConfigurationDAO(CONFIGURATION);
         app = daoConfiguration.obtener(Long.valueOf(1)).getApp();
     }
+
+    public IDAOManagerDB getManager_bbdd() {
+        return manager_bbdd;
+    }
                   
     public void saveFiles() throws ModelException {
         List<File> listaFicheros = new ArrayList<>();
@@ -50,7 +47,11 @@ public class Controller {
         for (Directorio d : directorios) {
             for(Arquivo a : d.getArquivos()) {
                 String ruta = d.getNomeDirectorio().concat(a.getNomeArquivo());
+                File dir = new File(d.getNomeDirectorio());
                 File file = new File(ruta);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
                 if (!file.exists()){
                     byte[] file_bbdd = a.getArquivo();
                     FileUtils.ArrayByteToFile(ruta, file_bbdd);

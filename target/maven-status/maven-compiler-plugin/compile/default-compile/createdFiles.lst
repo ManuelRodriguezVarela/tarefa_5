@@ -1,4 +1,5 @@
 gal/san/clemente/tarefa_5_bdo/controller/Controller.class
+gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/JDBCUtils.class
 gal/san/clemente/tarefa_5_bdo/model/dao/IDAO.class
 gal/san/clemente/tarefa_5_bdo/model/dao/IConfigurationDAO.class
 gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/HibernateUtil.class
@@ -15,6 +16,7 @@ gal/san/clemente/tarefa_5_bdo/model/dao/utils/configuration/ConfigurationBBDD.cl
 gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/DAOImpl.class
 gal/san/clemente/tarefa_5_bdo/model/dao/utils/ModelError.class
 gal/san/clemente/tarefa_5_bdo/exception/ModelException.class
+gal/san/clemente/tarefa_5_bdo/fios/ComprobarArquivosDirectorio.class
 gal/san/clemente/tarefa_5_bdo/model/dao/utils/FileUtils.class
 gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/DAOManagerBBDDImpl.class
 gal/san/clemente/tarefa_5_bdo/model/dao/IDAOManagerJSON.class
@@ -22,6 +24,7 @@ gal/san/clemente/tarefa_5_bdo/model/converter/IConverter.class
 gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/DAOImplJson.class
 gal/san/clemente/tarefa_5_bdo/model/dao/utils/ModelQuery.class
 gal/san/clemente/tarefa_5_bdo/model/dao/utils/configuration/ConnectionConf.class
+gal/san/clemente/tarefa_5_bdo/fios/GrabarArquivoDirectorioPorNotificacions.class
 gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/ArquivoDBDAOImpl.class
 gal/san/clemente/tarefa_5_bdo/model/dao/IArquivoDAO.class
 gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/ConfigurationJSONDAOImpl.class

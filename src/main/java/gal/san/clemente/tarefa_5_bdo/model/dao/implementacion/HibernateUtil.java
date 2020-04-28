@@ -65,7 +65,7 @@ public class HibernateUtil {
     }
     
     private void setProperies() throws ModelException {
-        ConfigurationBBDD propertiesConf = getPropertiesBBDD();
+        ConfigurationBBDD propertiesConf = ConfigurationBBDD.getPropertiesBBDD();
         String url = "jdbc:postgresql://" + propertiesConf.getDbConnection().getAddress()  
                 + "/" + propertiesConf.getDbConnection().getName();
         //Engadimos as propiedades
@@ -88,12 +88,6 @@ public class HibernateUtil {
         //Indicamos que se mostre as operacións SQL que Hibernate leva a cabo
         settings.put(Environment.SHOW_SQL, propertiesConf.getHibernate().getSHOW_SQL());
         conf.setProperties(settings);
-    }
-    
-    private ConfigurationBBDD getPropertiesBBDD() throws ModelException {
-        IDAOManagerJSON manager = (IDAOManagerJSON) DAOManagerFactory.getDAOManager("json");
-        IConfigurationDAO DAOConfiguration = manager.getConfigurationDAO("./configuration.json");
-        return DAOConfiguration.obtener(Long.valueOf(1));
     }
      
 }

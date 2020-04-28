@@ -18,6 +18,7 @@
 /home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/model/Arquivo.java
 /home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/model/dao/IDAOManagerDB.java
 /home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/model/dao/utils/configuration/ConnectionConf.java
+/home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/fios/ComprobarArquivos.java
 /home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/DAOImpl.java
 /home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/model/dao/implementacion/DAOImplJson.java
 /home/manu/NetBeansProjects/tarefa5_acceso_datos/src/main/java/gal/san/clemente/tarefa_5_bdo/model/dao/IDirectorioDAO.java

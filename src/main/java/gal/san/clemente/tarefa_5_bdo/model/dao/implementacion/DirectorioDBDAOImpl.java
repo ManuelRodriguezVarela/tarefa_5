@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class DirectorioDBDAOImpl extends DAOImpl<Directorio, Long> implements IDirectorioDAO {
     
@@ -90,6 +91,50 @@ public class DirectorioDBDAOImpl extends DAOImpl<Directorio, Long> implements ID
         } catch (Exception e) {
             throw new ModelException("Error al buscar en BBDD " + e.getMessage(), e);
         }
+    }
+    
+        @Override
+    public void createFunctionNotify() throws ModelException {
+        Transaction tran = null;
+        Session session = null;
+        session = sessionFactory.openSession();
+
+        String sql = new String("CREATE OR REPLACE FUNCTION aviso_novo_arquivo() " 
+            + "RETURNS TRIGGER AS $$ " 
+            + "BEGIN " 
+            + "PERFORM pg_notify('aviso_novo_arquivo', 'new.id::text'); " 
+            + "RETURN NEW; " 
+            + "END; "
+            + "$$ LANGUAGE PLPGSQL;");       
+
+        tran = session.beginTransaction();
+
+        Query query = session.createNativeQuery(sql);
+
+        query.executeUpdate();
+
+        tran.commit();
+    }
+
+    @Override
+    public void createTriggerNotify() throws ModelException {
+        Transaction tran = null;
+        Session session = null;
+        session = sessionFactory.openSession();
+	
+        String sql = "DROP TRIGGER IF EXISTS aviso_novo_arquivo_trigger ON arquivos; "
+            + "CREATE TRIGGER aviso_novo_arquivo_trigger " 
+            + "AFTER INSERT ON ARQUIVOS " 
+            + "FOR EACH ROW " 
+            + "EXECUTE PROCEDURE aviso_novo_arquivo(); ";
+		        
+        tran = session.beginTransaction();
+
+        Query query = session.createNativeQuery(sql);
+
+        query.executeUpdate();
+
+        tran.commit();
     }
     
 }

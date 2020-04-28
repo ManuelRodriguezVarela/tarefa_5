@@ -1,14 +1,14 @@
 {
     "dbConnection":{
         "address":"192.168.56.102",
-        "name":"postgres",
+        "name":"minidrive",
         "user":"accesodatos",
         "password":"abc123."    
     },
     "hibernate": {
 	"driver":"org.postgresql.Driver",
         "dialect":"org.hibernate.dialect.PostgreSQLDialect",
-        "HBM2DDL_AUTO":"update",
+        "HBM2DDL_AUTO":"create-drop",
         "SHOW_SQL":"true"
     },
     "app":{

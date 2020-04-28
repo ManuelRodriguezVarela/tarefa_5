@@ -1,6 +1,5 @@
 package gal.san.clemente.tarefa_5_bdo.model;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
