@@ -45,9 +45,11 @@ public class Controller {
     public void writeFilesIsNotExist() throws ModelException {
         List<Directorio> directorios = manager_bbdd.getDirectorioDAO().obtenerTodos();
         for (Directorio d : directorios) {
+            String directorio = app.getDirectory().concat(d.getNomeDirectorio().substring(1));
+            directorio = directorio.replaceAll("---", File.separator);
             for(Arquivo a : d.getArquivos()) {
-                String ruta = d.getNomeDirectorio().concat(a.getNomeArquivo());
-                File dir = new File(d.getNomeDirectorio());
+                String ruta =  directorio.concat(a.getNomeArquivo());
+                File dir = new File(directorio);
                 File file = new File(ruta);
                 if (!dir.exists()) {
                     dir.mkdirs();
@@ -67,11 +69,14 @@ public class Controller {
             Directorio directorio = null;
             if(!dir.equals(dirBefore)) {
                 dirBefore = dir;
+                
                 directorio = new Directorio();
                 directorio.setNomeDirectorio(dirBefore);
             }
             if(directorio != null) {
                 addArquivoToDirectorio(directorio, f);
+                String dire = directorio.getNomeDirectorio().replaceAll(app.getDirectory(), ".");
+                directorio.setNomeDirectorio(dire.replace(File.separator, "---"));
                 manager_bbdd.getDirectorioDAO().insertarOrEdit(directorio);
             }
         }
