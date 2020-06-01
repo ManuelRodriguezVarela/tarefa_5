@@ -36,10 +36,22 @@ public class Controller {
     }
                   
     public void saveFiles() throws ModelException {
-        List<File> listaFicheros = new ArrayList<>();
-        Path path = Paths.get(app.getDirectory());
+        List<Directorio> directorios = manager_bbdd.getDirectorioDAO().obtenerTodos();
+        if(directorios.isEmpty()){
+            File dir = new File(app.getDirectory());
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            List<File> listaFicheros = new ArrayList<>();
+            Path path = Paths.get(app.getDirectory());
+            List<File> files = FileUtils.getFileNames(listaFicheros, path);
+            if(!listaFicheros.isEmpty()) {
+                save(files);
+            }
+        } else {
+            writeFilesIsNotExist();
+        }
         
-        save(FileUtils.getFileNames(listaFicheros, path));
     }
     
     public void writeFilesIsNotExist() throws ModelException {

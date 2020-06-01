@@ -8,7 +8,7 @@
     "hibernate": {
 	"driver":"org.postgresql.Driver",
         "dialect":"org.hibernate.dialect.PostgreSQLDialect",
-        "HBM2DDL_AUTO":"create-drop",
+        "HBM2DDL_AUTO":"update",
         "SHOW_SQL":"true"
     },
     "app":{
