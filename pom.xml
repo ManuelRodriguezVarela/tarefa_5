@@ -10,7 +10,7 @@
         <jpa-version>2.2</jpa-version>
         <slf4j>2.0.0-alpha1</slf4j>
         <google-gsom>2.8.5</google-gsom>
-        <postgresql>42.2.9</postgresql>
+        <postgresql>42.2.25</postgresql>
     </properties>
     <dependencies>
         <!-- hibernate core -->
