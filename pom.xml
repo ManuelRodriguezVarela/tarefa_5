@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
-        <hibernate-version>5.4.10.Final</hibernate-version>
+        <hibernate-version>5.4.24.Final</hibernate-version>
         <jpa-version>2.2</jpa-version>
         <slf4j>2.0.0-alpha1</slf4j>
         <google-gsom>2.8.5</google-gsom>
